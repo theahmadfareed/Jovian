@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Success</title>
+    <style>
+      .job-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 8px;
+      }
+
+      .job-details {
+        margin-right: 20px;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <ul style="list-style: none">
+        <li>
+          <div style="display: flex; justify-content: center">
+            <button>
+              <a style="color: white" href="{{ url_for('contact') }}"
+                >Contact Us</a
+              >
+            </button>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <h1 style="text-align: center">Jovian Careers</h1>
+    <p style="text-align: center">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+      distinctio enim nisi cupiditate placeat aliquam repellendus, maxime
+      tempore illum corporis dignissimos!
+    </p>
+    <div style="text-align: center">
+      <button>
+        <a style="color: white" href="{{ url_for('home') }}"
+          >Explore Other Jobs</a
+        >
+      </button>
+    </div>
+  </body>
+</html>

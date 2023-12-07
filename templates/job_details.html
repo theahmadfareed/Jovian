@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- include summernote css/js -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+    <title>Job Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .job-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 8px;
+      }
+
+      .job-details {
+        margin-right: 20px;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul style="list-style: none">
+        <li>
+          <div style="display: flex; justify-content: center">
+            <button>
+              <a style="color: white" href="{{ url_for('contact') }}"
+                >Contact Us</a
+              >
+            </button>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <h1 style="text-align: center">Jovian Careers</h1>
+    <div class="job-container">
+      <div class="job-details">
+        {% if job %}
+        <h2>{{ job['id'] }}</h2>
+        <h2>{{ job['title'] }}</h2>
+        <h3><b>Location:</b>{{ job['location'] }}</h3>
+        <h3>Description</h3>
+        <p>{{ job['responsibilities'] }}</p>
+        <h3>Requirements</h3>
+        <p>{{ job['requirements'] }}</p>
+        <h3>Salary</h3>
+        <p>{{ job['salary'] }}:$</p>
+        {% endif %}
+
+        <div>
+          <h1 style="text-align: center"><b>Application Form</b></h1>
+          <div style="display: flex">
+            <form
+              action="{{ url_for('submit_application', job_id=job['id']) }}"
+              method="post"
+              enctype="multipart/form-data"
+            >
+              <div>
+                <label for="name">Name: </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="enter your name here ..."
+                />
+              </div>
+              <div>
+                <label for="email">Email: </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="enter your email here ..."
+                />
+              </div>
+              <div>
+                <label for="education">Education: </label>
+                <textarea
+                  id="summernoteEducation"
+                  name="education"
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </div>
+              <div>
+                <label for="experience">Experience: </label>
+                <textarea
+                  id="summernoteExperience"
+                  name="experience"
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </div>
+              <div>
+                <label for="linkedin">LinkedIn: </label>
+                <input
+                  type="url"
+                  name="linkedin"
+                  id="linkedin"
+                  placeholder="enter your linkedin profile url here ..."
+                />
+              </div>
+
+              <div>
+                <label for="resume">Resume: </label>
+                <input
+                  type="file"
+                  name="resume"
+                  id="resume"
+                  accept=".pdf,.doc,.docx"
+                  required
+                />
+              </div>
+
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("#summernoteEducation").summernote();
+      $("#summernoteExperience").summernote();
+    });
+  </script>
+</html>
